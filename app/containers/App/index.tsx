@@ -3,7 +3,6 @@ import styled from "styled-components"
 import GlobalStyle from "../../GlobalStyle"
 import { Switch, Route } from 'react-router-dom'
 import Login from "../Login"
-import { login } from "../../../store/session/actions"
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -13,7 +12,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `
 const Default = (): ReactElement => {
-  return <h1 onClick={login}>Default</h1>
+  return <h1>Working</h1>
 }
 
 export default function App(): ReactElement {
