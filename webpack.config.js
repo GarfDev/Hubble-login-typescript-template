@@ -4,7 +4,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
-  mode: "development",
   entry: './app/index.tsx',
   output: {
     path: path.join(__dirname, '/dist'),
@@ -20,6 +19,34 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65
+              },
+              optipng: {
+                enabled: !isDevelopment
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              },
+              gifsicle: {
+                interlaced: false
+              },
+              webp: {
+                quality: 75
+              }
+            }
+          }
+        ]
+      },
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
@@ -40,3 +67,4 @@ module.exports = {
     })
   ]
 };
+

@@ -2,26 +2,29 @@ import React, { ReactElement } from "react"
 import styled from "styled-components"
 import GlobalStyle from "../../GlobalStyle"
 import { Switch, Route } from 'react-router-dom'
-
-import Dropdown from "../../components/dropdown"
+import Login from "../Login"
+import { login } from "../../../store/session/actions"
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
   margin: 0 auto;
   display: flex;
   min-height: 100%;
   padding: 0 16px;
   flex-direction: column;
 `
+const Default = (): ReactElement => {
+  return <h1 onClick={login}>Default</h1>
+}
 
 export default function App(): ReactElement {
   return (
     <AppWrapper>
-      <Dropdown />
       <Switch>
-
+        <Route exact path="/" component={Default} />
+        <Route exact path="/login" component={Login} />
       </Switch>
       <GlobalStyle />
     </AppWrapper>
   )
 }
+

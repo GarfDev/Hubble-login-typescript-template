@@ -1,5 +1,6 @@
 import { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { AnyAction } from 'redux'
+import { MouseEvent } from "react";
 
 // Action Definition
 export interface SetAction {
@@ -22,23 +23,21 @@ export const isFetching = (isFetching: boolean): SetFetcing => {
   return { type: 'SET_FETCHING', isFetching }
 }
 
-// thunk action
-export const login = (username: string, password: string): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
-  // Invoke API
+// Reducer Action
+
+export const login = (event: MouseEvent): 
+ThunkAction<Promise<void>, {}, {}, AnyAction> => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     return new Promise<void>((resolve) => {
       dispatch(isFetching(true))
-      console.log('Login in progress')
-      // Fake async process
+      console.log('Loggin in')
       setTimeout(() => {
-        // set
-        dispatch(set('this_is_access_token'))
+        dispatch(set('Testing'))
         setTimeout(() => {
           dispatch(isFetching(false))
-          console.log('Login done')
+          console.log('Done')
           resolve()
-        }, 1000)
-      }, 3000)
+        }, 1000)}, 3000)
     })
   }
 }
